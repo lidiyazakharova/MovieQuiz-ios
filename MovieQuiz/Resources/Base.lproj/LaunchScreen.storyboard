@@ -15,8 +15,19 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="XJZ-5C-wbG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XJZ-5C-wbG" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="6fx-1m-LDN"/>
+                            <constraint firstItem="XJZ-5C-wbG" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="pgL-hh-OtA"/>
+                            <constraint firstAttribute="bottom" secondItem="XJZ-5C-wbG" secondAttribute="bottom" id="pmp-jm-SMo"/>
+                            <constraint firstItem="XJZ-5C-wbG" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="zQ8-7b-wbA"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +35,7 @@
             <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LaunchScreen" width="1125" height="2436"/>
+    </resources>
 </document>
