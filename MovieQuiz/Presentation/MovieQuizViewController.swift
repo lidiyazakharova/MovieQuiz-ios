@@ -1,29 +1,5 @@
 import UIKit
 
-struct ViewModel {
-    let image: UIImage
-    let question: String
-    let questionNumber: String
-}
-
-struct QuizStepViewModel {
-    let image: UIImage
-    let question: String
-    let questionNumber: String
-}
-
-struct QuizResultsViewModel {
-    let title: String
-    let text: String
-    let buttonText: String
-}
-
-struct QuizQuestion {
-    let image: String
-    let text: String
-    let correctAnswer: Bool
-}
-
 final class MovieQuizViewController: UIViewController {
     
     @IBOutlet private weak var imageView: UIImageView!
@@ -131,7 +107,7 @@ final class MovieQuizViewController: UIViewController {
         yesButton.isEnabled = false
         noButton.isEnabled = false
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.imageView.layer.borderWidth = 0
             
             self.yesButton.isEnabled = true
