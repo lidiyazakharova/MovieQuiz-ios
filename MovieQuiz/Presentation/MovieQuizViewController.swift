@@ -32,6 +32,10 @@ final class MovieQuizViewController: UIViewController {
     
     @IBOutlet private weak var counterLabel: UILabel!
     
+    @IBOutlet weak var yesButton: UIButton!
+    
+    @IBOutlet weak var noButton: UIButton!
+    
     private let questions: [QuizQuestion] = [
         QuizQuestion(
             image: "The Godfather",
@@ -124,8 +128,15 @@ final class MovieQuizViewController: UIViewController {
         imageView.layer.borderWidth = 8
         imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        yesButton.isEnabled = false
+        noButton.isEnabled = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
             self.imageView.layer.borderWidth = 0
+            
+            self.yesButton.isEnabled = true
+            self.noButton.isEnabled = true
+            
             self.showNextQuestionOrResults()
         }
     }
