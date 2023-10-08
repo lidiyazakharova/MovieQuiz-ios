@@ -14,19 +14,3 @@ struct GameRecord: Codable {// decodable+encodable
         correct > another.correct
     }
 }
-
-//extension GameRecord: Comparable {
-//    private var accuracy: Double {
-//        guard total != 0 else {
-//            return 0
-//        }
-//        return Double(correct) / Double(total)
-//    }
-//
-//    static func < (lhs: GameRecord, rhs: GameRecord) -> Bool {
-////                lhs.correct < rhs.correct
-//        lhs.accuracy < rhs.accuracy
-//    }
-//}
-
-

@@ -26,16 +26,10 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
+        
         questionFactory = QuestionFactory(delegate: self)
         alertPresenter = AlertPresenterImplementation(viewControllerDelegate: self)
         statisticService = StatisticServiceImplementation()
-        
-        //        let currentQuestion = questions[currentQuestionIndex]
-        //        if let firstQuestion = questionFactory.requestNextQuestion() {
-        //            currentQuestion = firstQuestion
-        //            let viewModel = convert(model: firstQuestion)
-        //            show(quiz: viewModel)
-        //        }
         
         questionFactory?.requestNextQuestion()
         
@@ -59,7 +53,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     // MARK: - Actions
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
-        //        let currentQuestion = questions[currentQuestionIndex]
         guard let currentQuestion = currentQuestion else {
             return
         }
@@ -70,7 +63,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
     
     @IBAction private func noButtonClicked(_ sender: UIButton) {
-        //        let currentQuestion = questions[currentQuestionIndex]
         guard let currentQuestion = currentQuestion else {
             return
         }
@@ -116,33 +108,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         }
     }
     
-    //    private func showNextQuestionOrResults() {
-    //        if currentQuestionIndex == questionsAmount - 1 {
-    //            //            let text = "Ваш результат: \(correctAnswers)/10"
-    //            let text = correctAnswers == questionsAmount ?
-    //            "Поздравляем, вы ответили на 10 из 10!" :
-    //            "Вы ответили на \(correctAnswers) из 10, попробуйте ещё раз!"
-    //
-    //            let viewModel = QuizResultsViewModel(
-    //                title: "Этот раунд окончен!",
-    //                text: text,
-    //                buttonText: "Сыграть ещё раз")
-    //            show(quiz: viewModel)
-    //
-    //        } else {
-    //            currentQuestionIndex += 1
-    //
-    //            //            let nextQuestion = questions[currentQuestionIndex]
-    //            //            if let nextQuestion = questionFactory.requestNextQuestion() {
-    //            //                currentQuestion = nextQuestion
-    //            //                let viewModel = convert(model: nextQuestion)
-    //            //
-    //            //                show(quiz: viewModel)
-    //            //            }
-    //            questionFactory?.requestNextQuestion()
-    //        }
-    //    }
-    
     private func showNextQuestionOrResults() {
         if currentQuestionIndex == questionsAmount - 1 {
             showFinalResults()
@@ -170,12 +135,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
     
     private func makeResultMessage() -> String {
-        //        """
-        //        Количество сыгранных квизов: \(statisticService?.gamesCount)
-        //        ...
-        //        """
         guard let statisticService = statisticService, let bestGame = statisticService.bestGame else {
-            assertionFailure("error massege")
+            assertionFailure("error message")
             return ""
         }
         
@@ -190,32 +151,5 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             currentGameResultLine, totalPlaysCountLine, bestGameInfoLine, averageAccuracyLine].joined(separator: "\n")
         return resultMessage
     }
-    
-    
-    
-    //        let alert = UIAlertController(
-    //            title: result.title,
-    //            message: result.text,
-    //            preferredStyle: .alert)
-    //
-    //        let action = UIAlertAction(title: result.buttonText, style: .default) { [weak self] _ in
-    //            guard let self = self else { return }
-    //
-    //            self.currentQuestionIndex = 0
-    //            self.correctAnswers = 0
-    //
-    //            //            let firstQuestion = self.questions[self.currentQuestionIndex]
-    ////            if let firstQuestion = self.questionFactory.requestNextQuestion() {
-    ////                self.currentQuestion = firstQuestion
-    ////                let viewModel = self.convert(model: firstQuestion)
-    ////
-    ////                self.show(quiz: viewModel)
-    ////            }
-    //            self.questionFactory?.requestNextQuestion()
-    //        }
-    //
-    //        alert.addAction(action)
-    //
-    //        self.present(alert, animated: true, completion: nil)
 }
 

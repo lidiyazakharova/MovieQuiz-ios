@@ -25,13 +25,11 @@ extension AlertPresenterImplementation: AlertPresenter {
             preferredStyle: .alert)
         
         let action = UIAlertAction(title: alertModel.buttonText, style: .default) { _ in
-            //            guard let self = self else { return }
             alertModel.buttonAction()
         }
         
         alert.addAction(action)
         
         viewControllerDelegate?.present(alert, animated: true)
-        //        self.present(alert, animated: true, completion: nil)
     }
 }

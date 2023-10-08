@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		592B0FD42ACA134A00759617 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592B0FD32ACA134A00759617 /* Movie.swift */; };
 		592B0FD62AD1C4E500759617 /* StatisticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592B0FD52AD1C4E500759617 /* StatisticService.swift */; };
 		592B0FD82AD1C60100759617 /* GameRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592B0FD72AD1C60100759617 /* GameRecord.swift */; };
 		592F21D62AA6753B00EDCC0F /* YS Display-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 592F21D42AA6753B00EDCC0F /* YS Display-Bold.ttf */; };
@@ -32,7 +31,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		592B0FD32ACA134A00759617 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		592B0FD52AD1C4E500759617 /* StatisticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticService.swift; sourceTree = "<group>"; };
 		592B0FD72AD1C60100759617 /* GameRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRecord.swift; sourceTree = "<group>"; };
 		592F21D42AA6753B00EDCC0F /* YS Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Bold.ttf"; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 				592F21E72AC234D900EDCC0F /* QuizResultsViewModel.swift */,
 				592F21E92AC234FB00EDCC0F /* QuizQuestion.swift */,
 				592F21EF2AC382D100EDCC0F /* AlertModel.swift */,
-				592B0FD32ACA134A00759617 /* Movie.swift */,
 				592B0FD72AD1C60100759617 /* GameRecord.swift */,
 			);
 			path = Models;
@@ -106,8 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				AD1ABAB52831907B00B3E448 /* MovieQuizViewController.swift */,
-				AD1ABAB72831907B00B3E448 /* Main.storyboard */,
 				592F21F12AC3846000EDCC0F /* AlertPresenter.swift */,
+				AD1ABAB72831907B00B3E448 /* Main.storyboard */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -253,7 +250,6 @@
 				AD77F5742857F8810062FB14 /* Date+Extensions.swift in Sources */,
 				AD1ABAB22831907B00B3E448 /* AppDelegate.swift in Sources */,
 				AD1ABAB42831907B00B3E448 /* SceneDelegate.swift in Sources */,
-				592B0FD42ACA134A00759617 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
