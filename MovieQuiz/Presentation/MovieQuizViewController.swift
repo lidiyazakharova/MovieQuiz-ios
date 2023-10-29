@@ -12,7 +12,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private var correctAnswers = 0
 //    private var currentQuestionIndex = 0
 //    private let questionsAmount: Int = 10
-    private var currentQuestion: QuizQuestion?
+//    private var currentQuestion: QuizQuestion?
     
     private var questionFactory: QuestionFactoryProtocol?
     private var alertPresenter: AlertPresenter?
@@ -24,6 +24,10 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     override func viewDidLoad() {
         
+        super.viewDidLoad()
+        
+        presenter.viewController = self
+        
         questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
         alertPresenter = AlertPresenterImplementation(viewControllerDelegate: self)
         statisticService = StatisticServiceImplementation()
@@ -33,22 +37,26 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         
         textLabel.textColor = .clear
         
-        super.viewDidLoad()
+        
     }
     
     
     //MARK: - QuestionFactoryDelegate
     
+//    func didReceiveNextQuestion(_ question: QuizQuestion?) {
+//        guard let  question = question else {
+//            return
+//        }
+//        currentQuestion = question
+//        let viewModel = presenter.convert(model: question)
+//        DispatchQueue.main.async { [weak self] in
+//            self?.show(quiz: viewModel)
+//        }
+//    }
+    
     func didReceiveNextQuestion(_ question: QuizQuestion?) {
-        guard let  question = question else {
-            return
+        presenter.didReceiveNextQuestion(question: question)
         }
-        currentQuestion = question
-        let viewModel = presenter.convert(model: question)
-        DispatchQueue.main.async { [weak self] in
-            self?.show(quiz: viewModel)
-        }
-    }
     
     func didFailToLoadData(with error: Error) {
         showNetworkError(message: error.localizedDescription)
@@ -63,24 +71,15 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     // MARK: - Actions
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
-        guard let currentQuestion = currentQuestion else {
-            return
-        }
-        
-        let givenAnswer = true
-        
-        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+//        presenter.currentQuestion = currentQuestion
+                presenter.yesButtonClicked()
     }
     
     @IBAction private func noButtonClicked(_ sender: UIButton) {
-        guard let currentQuestion = currentQuestion else {
-            return
-        }
-        let givenAnswer = false
-        
-        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+//        presenter.currentQuestion = currentQuestion
+                presenter.noButtonClicked()
     }
-    
+//
     // MARK: - Private functions
 //    private func convert(model: QuizQuestion) -> QuizStepViewModel {
 //        let questionStep = QuizStepViewModel(
@@ -92,14 +91,14 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
 //        return questionStep
 //    }
     
-    private func show(quiz step: QuizStepViewModel) {
+    func show(quiz step: QuizStepViewModel) {
         textLabel.textColor = .white
         imageView.image = step.image
         textLabel.text = step.question
         counterLabel.text = step.questionNumber
     }
     
-    private func showAnswerResult(isCorrect: Bool) {
+    func showAnswerResult(isCorrect: Bool) {
         if isCorrect {
             correctAnswers += 1
         }
@@ -132,7 +131,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         }
     }
     
-    private func showFinalResults() {
+    func showFinalResults() {
         statisticService?.store(correct: correctAnswers, total: presenter.questionsAmount)
         
         let alertModel = AlertModel(
