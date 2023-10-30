@@ -1,6 +1,6 @@
 import UIKit
 
-final class MovieQuizViewController: UIViewController {
+final class MovieQuizViewController: UIViewController, MovieQuizViewControllerProtocol {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet private weak var textLabel: UILabel!
@@ -34,9 +34,9 @@ final class MovieQuizViewController: UIViewController {
         alertPresenter = AlertPresenterImplementation(viewControllerDelegate: self)
         //        statisticService = StatisticServiceImplementation()
         
-        showLoadingIndicator()
+//        showLoadingIndicator()
         //        questionFactory?.loadData()
-        
+        imageView.layer.cornerRadius = 20
         textLabel.textColor = .clear
         
         
@@ -100,9 +100,10 @@ final class MovieQuizViewController: UIViewController {
         counterLabel.text = step.questionNumber
     }
     
-//    func show(quiz result: QuizResultsViewModel) {
-    func show() {
+    func show(quiz result: QuizResultsViewModel) {
+//    func show() {
         let message = presenter.makeResultMessage()
+        
         
 //        let alert = UIAlertController(
 //            title: result.title,
