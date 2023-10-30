@@ -8,7 +8,6 @@ import UIKit
 final class MovieQuizPresenter: QuestionFactoryDelegate {
     
     weak var viewController: MovieQuizViewControllerProtocol?
-//    weak var viewController: MovieQuizViewController?
     private var questionFactory: QuestionFactoryProtocol?
     private var alertPresenter: AlertPresenter?
     private let statisticService: StatisticService!
@@ -19,22 +18,6 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
     private var currentQuestion: QuizQuestion?
     
     
-    //    func showNextQuestionOrResults() {
-    //            if self.isLastQuestion() {
-    //                let text = "Вы ответили на \(correctAnswers) из 10, попробуйте ещё раз!"
-    //
-    //                let viewModel = QuizResultsViewModel(
-    //                    title: "Этот раунд окончен!",
-    //                    text: text,
-    //                    buttonText: "Сыграть ещё раз")
-    //                    viewController?.show(quiz: viewModel)
-    //            } else {
-    //                self.switchToNextQuestion()
-    //                questionFactory?.requestNextQuestion()
-    //            }
-    //        }
-    
-//    init(viewController: MovieQuizViewController) {
     init(viewController: MovieQuizViewControllerProtocol) {
         self.viewController = viewController
         
@@ -74,6 +57,8 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         }
     }
     
+    //MARK: - Private functions
+    
     func isLastQuestion() -> Bool {
         currentQuestionIndex == questionsAmount - 1
     }
@@ -98,7 +83,6 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         currentQuestionIndex += 1
     }
     
-    
     func convert(model: QuizQuestion) -> QuizStepViewModel {
         let questionStep = QuizStepViewModel(
             
@@ -108,27 +92,6 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         
         return questionStep
     }
-    
-    //    func yesButtonClicked() {
-    //        guard let currentQuestion = currentQuestion else {
-    //            return
-    //        }
-    //
-    //        let givenAnswer = true
-    //
-    //        viewController?.showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
-    //    }
-    //
-    //
-    //    func noButtonClicked() {
-    //        guard let currentQuestion = currentQuestion else {
-    //            return
-    //        }
-    //
-    //        let givenAnswer = false
-    //
-    //        viewController?.showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
-    //    }
     
     func yesButtonClicked() {
         didAnswer(isYes: true)
@@ -168,57 +131,17 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
             let text = correctAnswers == self.questionsAmount ?
             "Поздравляем, вы ответили на 10 из 10!" :
             "Вы ответили на \(correctAnswers) из 10, попробуйте ещё раз!"
-
+            
             let viewModel = QuizResultsViewModel(
                 title: "Этот раунд окончен!",
                 text: text,
                 buttonText: "Сыграть ещё раз")
             viewController?.show(quiz: viewModel)
-//            viewController?.show()
         } else {
             self.switchToNextQuestion()
             questionFactory?.requestNextQuestion()
         }
     }
-    
-//    func showFinalResults() {
-    //        statisticService?.store(correct: correctAnswers, total: presenter.questionsAmount)
-    //
-    //        let alertModel = AlertModel(
-    //            title: "Этот раунд окончен!",
-    //            message: presenter.makeResultMessage(),
-    //            buttonText: "Сыграть ещё раз",
-    //            buttonAction: { [weak self] in
-    ////                self?.currentQuestionIndex = 0
-    ////                self?.presenter.resetQuestionIndex()
-    ////                self?.correctAnswers = 0
-    ////                self?.questionFactory?.requestNextQuestion()
-    //                guard let self = self else { return }
-    //                self.presenter.restartGame()
-    //            }
-    //        )
-    //
-    //        alertPresenter?.show(alertModel: alertModel)
-    //    }
-    
-    
-    //    func makeResultsMessage() -> String {
-    //        statisticService.store(correct: correctAnswers, total: questionsAmount)
-    //
-    //        let bestGame = statisticService.bestGame
-    //
-    //        let totalPlaysCountLine = "Количество сыгранных квизов: \(statisticService.gamesCount)"
-    //        let currentGameResultLine = "Ваш результат: \(correctAnswers)\\\(questionsAmount)"
-    //        let bestGameInfoLine = "Рекорд: \(bestGame.correct)\\\(bestGame.total)"
-    //        + " (\(bestGame.date.dateTimeString))"
-    //        let averageAccuracyLine = "Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%"
-    //
-    //        let resultMessage = [
-    //        currentGameResultLine, totalPlaysCountLine, bestGameInfoLine, averageAccuracyLine
-    //        ].joined(separator: "\n")
-    //
-    //        return resultMessage
-    //    }
     
     func makeResultMessage() -> String {
         statisticService.store(correct: correctAnswers, total: questionsAmount)
