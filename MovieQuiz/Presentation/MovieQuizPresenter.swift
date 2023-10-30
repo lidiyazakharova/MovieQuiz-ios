@@ -154,10 +154,8 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             guard let self = self else { return }
             
-            self.viewController?.imageView.layer.borderWidth = 0
-            self.viewController?.yesButton.isEnabled = true
-            self.viewController?.noButton.isEnabled = true
-
+            
+            self.viewController?.changeAfterClicked()
             self.proceedToNextQuestionOrResults()
         }
     }

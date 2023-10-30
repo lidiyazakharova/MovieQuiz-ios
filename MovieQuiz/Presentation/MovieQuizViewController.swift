@@ -135,7 +135,11 @@ final class MovieQuizViewController: UIViewController {
         noButton.isEnabled = false
     }
     
-    
+    func changeAfterClicked() {
+    imageView.layer.borderWidth = 0
+    yesButton.isEnabled = true
+    noButton.isEnabled = true
+}
     //    func showAnswerResult(isCorrect: Bool) {
     //        if isCorrect {
     //            correctAnswers += 1
