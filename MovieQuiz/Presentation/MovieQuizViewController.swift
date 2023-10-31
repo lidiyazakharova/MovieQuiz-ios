@@ -12,6 +12,9 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     private var presenter: MovieQuizPresenter!
     private var alertPresenter: AlertPresenter?
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return.lightContent
+    }
     
     // MARK: - Lifecycle
     
@@ -36,7 +39,7 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         presenter.noButtonClicked()
     }
         
-    // MARK: - Private functions
+    // MARK: - Functions
     
     func show(quiz step: QuizStepViewModel) {
         textLabel.textColor = .white
