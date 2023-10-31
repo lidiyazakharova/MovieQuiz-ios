@@ -48,7 +48,9 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         counterLabel.text = step.questionNumber
     }
     
-    func show(quiz result: QuizResultsViewModel) {
+//    func show(quiz result: QuizResultsViewModel) {
+        func showResult() {
+
         
         let message = presenter.makeResultMessage()
         

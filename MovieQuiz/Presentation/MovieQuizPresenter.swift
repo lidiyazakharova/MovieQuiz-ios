@@ -59,6 +59,16 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         questionFactory?.loadData()
     }
     
+    func convert(model: QuizQuestion) -> QuizStepViewModel {
+         let questionStep = QuizStepViewModel(
+             
+             image: UIImage(data: model.image) ?? UIImage(),
+             question: model.text,
+             questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
+         
+         return questionStep
+     }
+    
     func restartGame() {
         currentQuestionIndex = 0
         correctAnswers = 0
@@ -113,16 +123,6 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         currentQuestionIndex += 1
     }
     
-    private func convert(model: QuizQuestion) -> QuizStepViewModel {
-        let questionStep = QuizStepViewModel(
-            
-            image: UIImage(data: model.image) ?? UIImage(),
-            question: model.text,
-            questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
-        
-        return questionStep
-    }
-    
     private func didAnswer(isYes: Bool) {
         guard let currentQuestion = currentQuestion else {
             return
@@ -149,16 +149,17 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
     
     private func proceedToNextQuestionOrResults() {
         if self.isLastQuestion() {
-            
-            let text = correctAnswers == self.questionsAmount ?
-            "Поздравляем, вы ответили на 10 из 10!" :
-            "Вы ответили на \(correctAnswers) из 10, попробуйте ещё раз!"
-            
-            let viewModel = QuizResultsViewModel(
-                title: "Этот раунд окончен!",
-                text: text,
-                buttonText: "Сыграть ещё раз")
-            viewController?.show(quiz: viewModel)
+//
+//            let text = correctAnswers == self.questionsAmount ?
+//            "Поздравляем, вы ответили на 10 из 10!" :
+//            "Вы ответили на \(correctAnswers) из 10, попробуйте ещё раз!"
+//
+//            let viewModel = QuizResultsViewModel(
+//                title: "Этот раунд окончен!",
+//                text: text,
+//                buttonText: "Сыграть ещё раз")
+//            viewController?.show(quiz: viewModel)
+            viewController?.showResult()
         } else {
             self.switchToNextQuestion()
             questionFactory?.requestNextQuestion()
